@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: terminal-management-system
+    env: docker
+    region: ohio # Change to your preferred region (e.g., oregon, frankfurt)
+    plan: free # Change to 'starter' or higher for production workloads
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: terminal-db
+          property: connectionString
+
+databases:
+  - name: terminal-db
+    databaseName: terminal_management
+    user: terminal_user
+    plan: free # Change to paid plan if needed
