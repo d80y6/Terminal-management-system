@@ -43,9 +43,7 @@ RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 EXPOSE 80
 
 # Start script: clear cache, cache fresh config with environment variables, migrate, and start services
-CMD php artisan config:clear && \
-    php artisan cache:clear && \
-    php artisan config:cache && \
+CMD php artisan config:cache && \
     php artisan route:cache && \
     php artisan migrate --force && \
     service nginx start && \
